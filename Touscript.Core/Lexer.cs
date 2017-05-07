@@ -17,7 +17,7 @@ namespace Touscript.Core
 
         public Lexer(string input)
         {
-            Input = input.StripWhiteSpace();
+            Input = input;
             CurrentToken = null;
             Position = 0;
             CurrentChar = Input[Position];
@@ -34,6 +34,15 @@ namespace Touscript.Core
             {
                 CurrentChar = Input[Position];
             }
+        }
+
+        public char Peek()
+        {
+            var peekPosition = Position + 1;
+            if (peekPosition > Input.Length - 1)
+                return END_OF_FILE;
+            else
+                return Input[peekPosition];
         }
 
         public void SkipWhitespace()
@@ -139,6 +148,16 @@ namespace Touscript.Core
                 return new Token(EOF, null);
             }
             return new Token(EOF, null);
+        }
+
+        public int ErrorUnexpectedToken(Token token)
+        {
+            throw new UnexpectedTokenException(Position, Input, token);
+        }
+
+        public int ErrorUnexpectedEndOfFile()
+        {
+            throw new UnexpectedEndOfFileException(Position, Input);
         }
     }
 }

@@ -18,5 +18,27 @@ namespace Touscript.Core
         {
             return Array.IndexOf(array, value) != -1;
         }
+
+        public static string Neighboor(this string value, int index, int range)
+        {
+            var leftIndex = Clamp(index - range, 0, index);
+            var rightIndex = Clamp(index + range, 0, value.Length - 1);
+            var length = rightIndex - leftIndex + 1;
+
+            return value.Substring(leftIndex, length);
+        }
+
+        private static int Clamp(int value, int min, int max)
+        {
+            if (value < min)
+            {
+                value = min;
+            }
+            if (value > max)
+            {
+                value = max;
+            }
+            return value;
+        }
     }
 }

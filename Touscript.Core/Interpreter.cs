@@ -57,7 +57,7 @@ namespace Touscript.Core
                 Eat(RPAREN);
                 return result;
             }
-            return Error();
+            return ErrorUnexpectedToken(token);
         }
 
         private int Value(string variableName)
@@ -97,7 +97,21 @@ namespace Touscript.Core
                 Eat(ASSIGN);
                 return Expr();
             }
-            return Error<UnexpectedTokenException>();
+            return ErrorUnexpectedToken(CurrentToken);
+        }
+
+        private int ErrorUnexpectedToken(Token token)
+        {
+            if (token.Type == EOF)
+            {
+                return ErrorUnexpectedEndOfFile();
+            }
+            return Lexer.ErrorUnexpectedToken(token);
+        }
+
+        private int ErrorUnexpectedEndOfFile()
+        {
+            return Lexer.ErrorUnexpectedEndOfFile();
         }
 
         private int Error<T>() where T : Exception, new()

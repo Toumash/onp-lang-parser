@@ -12,7 +12,6 @@ namespace Touscript.Core
                 {
                     ChangeColorFor(() => Console.Write("? >> "), ConsoleColor.Cyan);
                     var text = Console.ReadLine();
-                    text = text.StripWhiteSpace();
                     if (string.IsNullOrEmpty(text))
                         continue;
                     var lexer = new Lexer(text);
@@ -21,14 +20,25 @@ namespace Touscript.Core
                     ChangeColorFor(() => Console.WriteLine("VARs:"), ConsoleColor.Green);
                     ChangeColorFor(() => interpreter.DumpVariables(), ConsoleColor.Green);
                 }
+                catch (UnexpectedEndOfFileException e)
+                {
+                    ChangeColorFor(() =>
+                    {
+                        Console.WriteLine($"Unexpected end of file. Character {e.Index}");
+                        Console.WriteLine($"{e.Code.Substring((e.Index - 10) >= 0 ? e.Index - 10 : 0, e.Index)}");
+                    }, ConsoleColor.Red);
+                }
+                catch (UnexpectedTokenException e)
+                {
+                    ChangeColorFor(() =>
+                    {
+                        Console.WriteLine($"Unexpected token {e.Token}. Character {e.Index}");
+                        Console.WriteLine($"{e.Code.Substring((e.Index - 10) >= 0 ? e.Index - 10 : 0, e.Index)}");
+                    }, ConsoleColor.Red);
+                }
                 catch (Exception e)
                 {
-                    var fg = Console.ForegroundColor;
-                    var bg = Console.BackgroundColor;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(e);
-                    Console.ForegroundColor = fg;
-                    Console.BackgroundColor = bg;
+                    ChangeColorFor(() => Console.WriteLine(e), ConsoleColor.Red);
                 }
             }
         }

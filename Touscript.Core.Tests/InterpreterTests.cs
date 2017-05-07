@@ -44,7 +44,7 @@ namespace Touscript.Core.Tests
         {
             var instructions = "a";
             var interpreter = new Interpreter(new Lexer(instructions));
-            Assert.Throws<UnexpectedTokenException>(() =>
+            Assert.Throws<UnexpectedEndOfFileException>(() =>
             {
                 interpreter.Interpret();
             });
