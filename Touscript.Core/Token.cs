@@ -15,5 +15,17 @@
         {
             return $"Token({Type},{Value})";
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (!(obj is Token))
+                return false;
+
+            var token = obj as Token;
+            return Type == token.Type && Value.Equals(token.Value);
+        }
     }
 }

@@ -97,7 +97,12 @@ namespace Touscript.Core
                 Eat(ASSIGN);
                 return Expr();
             }
-            return Error();
+            return Error<UnexpectedTokenException>();
+        }
+
+        private int Error<T>() where T : Exception, new()
+        {
+            throw new T();
         }
 
         /// <summary>

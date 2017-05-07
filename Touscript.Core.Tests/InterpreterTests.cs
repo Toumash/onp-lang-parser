@@ -20,6 +20,7 @@ namespace Touscript.Core.Tests
             Assert.IsTrue(interpreter.Variables.ContainsKey("a"));
             Assert.AreEqual(5, interpreter.Variables["a"]);
         }
+
         [Test()]
         public void GivenTwoSimpleAssignOnyTheSameLine_WhenInterpreting_ThenLeaveVariableOnHeap()
         {
@@ -28,6 +29,25 @@ namespace Touscript.Core.Tests
             interpreter.Interpret();
             Assert.IsTrue(interpreter.Variables.ContainsKey("a"));
             Assert.AreEqual(5, interpreter.Variables["a"]);
+        }
+
+        [Test()]
+        public void GivenSingleDigitNumber_WhenInterpreting_ThenDoNothing()
+        {
+            var instructions = "5";
+            var interpreter = new Interpreter(new Lexer(instructions));
+            interpreter.Interpret();
+        }
+
+        [Test()]
+        public void GivenOnlyVariable_WhenInterpreting_ThenThrow()
+        {
+            var instructions = "a";
+            var interpreter = new Interpreter(new Lexer(instructions));
+            Assert.Throws<UnexpectedTokenException>(() =>
+            {
+                interpreter.Interpret();
+            });
         }
     }
 }
