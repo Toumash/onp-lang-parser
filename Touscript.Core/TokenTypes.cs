@@ -15,6 +15,7 @@ namespace Touscript.Core
         public const string ELSEIF = "ELSE";
         public const string NUMBER = "NUM";
         public const string VARIABLE = "VAR";
+        public const string ASSIGNMENT = "ASSIGN";
         public const string PLUS = "PLUS";
         public const string MINUS = "MINUS";
         public const string MUL = "MUL";

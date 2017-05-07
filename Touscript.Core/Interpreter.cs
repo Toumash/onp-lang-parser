@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using static Touscript.Core.TokenTypes;
 
@@ -8,15 +9,33 @@ namespace Touscript.Core
     {
         public Token CurrentToken { get; private set; }
         public Lexer Lexer { get; }
+        public Dictionary<string, int> Variables { get; }
 
         public Interpreter(Lexer lexer)
         {
             Lexer = lexer;
             CurrentToken = lexer.GetNextToken();
+            Variables = new Dictionary<string, int>();
+        }
+
+        public void Interpret()
+        {
+            while (CurrentToken.Type != EOF)
+            {
+                Main();
+            }
+        }
+
+        public void DumpVariables()
+        {
+            foreach (var variable in Variables)
+            {
+                Console.WriteLine($"{variable.Key} = {variable.Value}");
+            }
         }
 
         /// <summary>
-        /// factor : NUMBER | LPAREN expr RPAREN
+        /// factor : NUMBER | LPAREN expre RPAREN | VARIABLE
         /// </summary>
         public int Factor()
         {
@@ -26,6 +45,11 @@ namespace Touscript.Core
                 Eat(NUMBER);
                 return (int)token.Value;
             }
+            else if (token.Type == VARIABLE)
+            {
+                Eat(VARIABLE);
+                return (int)Value(token.Value.ToString());
+            }
             else if (token.Type == LPAREN)
             {
                 Eat(LPAREN);
@@ -33,18 +57,54 @@ namespace Touscript.Core
                 Eat(RPAREN);
                 return result;
             }
-            return -1;
+            return Error();
         }
 
-        public void Error()
+        private int Value(string variableName)
+        {
+            if (Variables.ContainsKey(variableName))
+            {
+                return Variables[variableName];
+            }
+            return 0;
+        }
+
+        public int Error()
         {
             throw new Exception("Error parsing input");
         }
 
         /// <summary>
-        ///  expr   : term ((PLUS | MINUS) term)*
-        /// term   : factor((MUL | DIV) factor)*
-        /// factor : NUMBER
+        /// main        : (VARIABLE assignmentOperator)? expr
+        /// </summary>
+        public int Main()
+        {
+            if (CurrentToken.Type == VARIABLE)
+            {
+                var token = CurrentToken;
+                Eat(VARIABLE);
+                var newValue = AssignmentOperator();
+                Variables[(string)token.Value] = newValue;
+                return newValue;
+            }
+            return Expr();
+        }
+
+        public int AssignmentOperator()
+        {
+            if (CurrentToken.Type == ASSIGNMENT)
+            {
+                Eat(ASSIGNMENT);
+                return Expr();
+            }
+            return Error();
+        }
+
+        /// <summary>
+        /// main        : (VARIABLE assignmentOperator)? expr
+        /// expr        : term ((PLUS | MINUS) term)*
+        /// term        : factor((MUL | DIV) factor)*
+        /// factor      : NUMBER | LPAREN expre RPAREN | VARIABLE
         /// </summary>
         public int Expr()
         {

@@ -129,6 +129,11 @@ namespace Touscript.Core
                 {
                     return new Token(VARIABLE, Variable());
                 }
+                if (CurrentChar == '=')
+                {
+                    Advance();
+                    return new Token(ASSIGNMENT, '=');
+                }
                 return new Token(EOF, null);
             }
             return new Token(EOF, null);
