@@ -13,6 +13,8 @@ namespace Touscript.Core
         public char CurrentChar { get; private set; }
         public int Position { get; private set; }
 
+        private const char END_OF_FILE = '\0';
+
         public Lexer(string input)
         {
             Input = input.StripWhiteSpace();
@@ -26,7 +28,7 @@ namespace Touscript.Core
             Position += 1;
             if (Position > Input.Length - 1)
             {
-                CurrentChar = '\0';
+                CurrentChar = END_OF_FILE;
             }
             else
             {
@@ -69,7 +71,7 @@ namespace Touscript.Core
 
         public bool Eof()
         {
-            return CurrentChar == '\0';
+            return CurrentChar == END_OF_FILE;
         }
 
         /// <summary>
