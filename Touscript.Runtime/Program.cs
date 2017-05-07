@@ -7,8 +7,7 @@ namespace Touscript.Core
         static void Main(string[] args)
         {
             while (true)
-            {
-
+            { 
                 Console.Write("script> ");
                 var text = Console.ReadLine();
                 text = text.StripWhiteSpace();

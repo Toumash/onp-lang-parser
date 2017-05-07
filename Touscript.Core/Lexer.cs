@@ -53,6 +53,20 @@ namespace Touscript.Core
             return int.Parse(result.ToString());
         }
 
+        public string Variable()
+        {
+            var result = new StringBuilder();
+
+            result.Append(CurrentChar);
+            Advance();
+            while (!Eof() && char.IsLetterOrDigit(CurrentChar))
+            {
+                result.Append(CurrentChar);
+                Advance();
+            }
+            return result.ToString();
+        }
+
         public bool Eof()
         {
             return CurrentChar == '\0';
@@ -91,6 +105,31 @@ namespace Touscript.Core
                     Advance();
                     return new Token(MINUS, '-');
                 }
+                if (CurrentChar == '*')
+                {
+                    Advance();
+                    return new Token(MUL, '*');
+                }
+                if (CurrentChar == '/')
+                {
+                    Advance();
+                    return new Token(DIV, '/');
+                }
+                if (CurrentChar == '(')
+                {
+                    Advance();
+                    return new Token(LPAREN, '(');
+                }
+                if (CurrentChar == ')')
+                {
+                    Advance();
+                    return new Token(RPAREN, ')');
+                }
+                if (char.IsLetter(CurrentChar))
+                {
+                    return new Token(VARIABLE, Variable());
+                }
+                return new Token(EOF, null);
             }
             return new Token(EOF, null);
         }

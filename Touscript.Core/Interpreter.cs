@@ -15,13 +15,25 @@ namespace Touscript.Core
             CurrentToken = lexer.GetNextToken();
         }
 
-
-
+        /// <summary>
+        /// factor : NUMBER | LPAREN expr RPAREN
+        /// </summary>
         public int Factor()
         {
             var token = CurrentToken;
-            Eat(NUMBER);
-            return (int)token.Value;
+            if (token.Type == NUMBER)
+            {
+                Eat(NUMBER);
+                return (int)token.Value;
+            }
+            else if (token.Type == LPAREN)
+            {
+                Eat(LPAREN);
+                var result = Expr();
+                Eat(RPAREN);
+                return result;
+            }
+            return -1;
         }
 
         public void Error()
@@ -30,10 +42,35 @@ namespace Touscript.Core
         }
 
         /// <summary>
-        ///  expr -> INTEGER PLUS INTEGER
+        ///  expr   : term ((PLUS | MINUS) term)*
+        /// term   : factor((MUL | DIV) factor)*
+        /// factor : NUMBER
         /// </summary>
-        /// <returns></returns>
         public int Expr()
+        {
+            var result = Term();
+
+            while (CurrentToken.Type.In(PLUS, MINUS))
+            {
+                var token = CurrentToken;
+                if (token.Type == PLUS)
+                {
+                    Eat(PLUS);
+                    result = result + Term();
+                }
+                else if (token.Type == MINUS)
+                {
+                    Eat(MINUS);
+                    result = result - Term();
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// term : factor ((MUL | DIV) factor)*
+        /// </summary>
+        public int Term()
         {
             var result = Factor();
 
@@ -43,12 +80,12 @@ namespace Touscript.Core
                 if (token.Type == MUL)
                 {
                     Eat(MUL);
-                    result = result * Factor();
+                    result = result * Term();
                 }
                 else if (token.Type == DIV)
                 {
                     Eat(DIV);
-                    result = result / Factor();
+                    result = result / Term();
                 }
             }
             return result;
