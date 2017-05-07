@@ -13,5 +13,10 @@ namespace Touscript
         {
             return Regex.Replace(input, @"\s+", "");
         }
+
+        public static bool In(this string value, params string[] array)
+        {
+            return Array.IndexOf(array, value) != -1;
+        }
     }
 }

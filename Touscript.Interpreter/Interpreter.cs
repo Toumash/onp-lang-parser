@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using Touscript.Interpreter;
 using static Touscript.Interpreter.TokenTypes;
 
@@ -27,6 +28,48 @@ namespace Touscript.Interpreter
             throw new Exception("Error parsing input");
         }
 
+        public void Advance()
+        {
+            Position += 1;
+            if (Position > Input.Length - 1)
+            {
+                CurrentChar = '\0';
+            }
+            else
+            {
+                CurrentChar = Input[Position];
+            }
+        }
+
+        public void Factor()
+        {
+            Eat(NUMBER);
+        }
+
+        public void SkipWhitespace()
+        {
+            while (!Eof() && char.IsWhiteSpace(CurrentChar))
+            {
+                Advance();
+            }
+        }
+
+        public int Integer()
+        {
+            var result = new StringBuilder();
+            while (!Eof() && char.IsDigit(CurrentChar))
+            {
+                result.Append(CurrentChar);
+                Advance();
+            }
+            return int.Parse(result.ToString());
+        }
+
+        public bool Eof()
+        {
+            return CurrentChar == '\0';
+        }
+
         /// <summary>
         /// Lexical analyzer (also known as scanner or tokenizer)
         /// This method is responsible for breaking a sentence
@@ -37,70 +80,71 @@ namespace Touscript.Interpreter
         {
             var text = Input;
 
-            // is self.pos index past the end of the self.text ?
-            //if so, then return EOF token because there is no more
-            // input left to convert into tokens
-            if (Position > text.Length - 1)
-                return new Token(EOF, null);
-
-            // get a character at the position self.pos and decide
-            // what token to create based on the single character
-            CurrentChar = text[Position];
-            Token token = null;
-            if (char.IsDigit(CurrentChar))
+            while (!Eof())
             {
-                token = new Token(NUMBER, int.Parse(CurrentChar + ""));
-                Position += 1;
-                return token;
-            }
+                if (char.IsWhiteSpace(CurrentChar))
+                {
+                    SkipWhitespace();
+                    continue;
+                }
 
-            if (CurrentChar == '+')
-            {
-                token = new Token(PLUS, CurrentChar);
-                Position += 1;
-                return token;
-            }
+                if (char.IsDigit(CurrentChar))
+                {
+                    return new Token(NUMBER, Integer());
+                }
 
-            Error();
-            return null;
+                if (CurrentChar == '+')
+                {
+                    Advance();
+                    return new Token(PLUS, '-');
+                }
+                if (CurrentChar == '-')
+                {
+                    Advance();
+                    return new Token(MINUS, '-');
+                }
+            }
+            return new Token(EOF, null);
         }
+
 
         /// <summary>
         ///  expr -> INTEGER PLUS INTEGER
         /// </summary>
         /// <returns></returns>
-        public int expr()
+        public void Expr()
         {
-            CurrentToken = GetNextToken();
+            Factor();
 
-            // we expect the current token to be a single-digit integer
-            var left = CurrentToken;
-            eat(NUMBER);
-
-            // we expect the current token to be a '+' token
-            var op = CurrentToken;
-            eat(PLUS);
-
-            // we expect the current token to be a single-digit integer
-            var right = CurrentToken;
-            eat(NUMBER);
-            // after the above call the self.current_token is set to
-            // EOF token;
-
-            // at this point INTEGER PLUS INTEGER sequence of tokens
-            // has been successfully found and the method can just
-            // return the result of adding two integers, thus
-            // effectively interpreting client input
-            var result = (int)left.Value + (int)right.Value;
-            return result;
+            while (CurrentToken.Type.In(MUL, DIV))
+            {
+                var token = CurrentToken;
+                if (token.Type == MUL)
+                {
+                    Eat(MUL);
+                    Factor();
+                }
+                else if (token.Type == DIV)
+                {
+                    Eat(DIV);
+                    Factor();
+                }
+            }
         }
 
-        public void eat(string token_type)
+        public void Eat(string token_type)
         {
             if (CurrentToken.Type == token_type)
                 CurrentToken = GetNextToken();
             else
                 Error();
+        }
+
+        public int Term()
+        {
+            var token = CurrentToken;
+            Eat(NUMBER);
+            return (int)token.Value;
         }
     }
 }

@@ -74,5 +74,32 @@ namespace Touscript.Tests
             var result = testingString.StripWhiteSpace();
             Assert.AreEqual("ab", result);
         }
+
+        [Test()]
+        public void GivenAWhenCheckingIfItIsInABCThenReturnTrue()
+        {
+            var value = "A";
+            var array = new string[] { "A", "B", "C" };
+            var result = value.In(array);
+            Assert.IsTrue(result);
+        }
+
+        [Test()]
+        public void GivenAWhenCheckingIfItIsInBCThenReturnFalse()
+        {
+            var value = "A";
+            var array = new string[] { "B", "C" };
+            var result = value.In(array);
+            Assert.IsFalse(result);
+        }
+
+        [Test()]
+        public void GivenAWhenCheckingIfItIsInBACAThenReturnTrue()
+        {
+            var value = "A";
+            var array = new string[] { "B", "A", "C", "A" };
+            var result = value.In(array);
+            Assert.IsTrue(result);
+        }
     }
 }

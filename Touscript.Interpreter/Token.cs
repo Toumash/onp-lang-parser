@@ -10,5 +10,10 @@
             this.Type = type;
             this.Value = value;
         }
+
+        public override string ToString()
+        {
+            return $"Token({Type},{Value}";
+        }
     }
 }

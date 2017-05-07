@@ -15,7 +15,7 @@ namespace Touscript.Core
                 if (string.IsNullOrEmpty(text))
                     continue;
                 var interpreter = new Interpreter.Interpreter(text);
-                var result = interpreter.expr();
+                var result = interpreter.Expr();
                 Console.WriteLine(result);
             }
         }
