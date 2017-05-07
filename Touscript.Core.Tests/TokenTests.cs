@@ -6,7 +6,7 @@ namespace Touscript.Core.Tests
     public class TokenTests
     {
         [Test()]
-        public void GivenTokenVariableWhenUsingToStringThenGiveInternalTokenRepresentation()
+        public void GivenTokenVariable_WhenUsingToString_ThenGiveInternalTokenRepresentation()
         {
             var token = new Token(TokenTypes.VAR, 5);
             var result = token.ToString();
@@ -15,7 +15,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenTokenAssignmentWhenUsingToStringThenGiveInternalRepresentation()
+        public void GivenTokenAssignment_WhenUsingToString_ThenGiveInternalRepresentation()
         {
             var token = new Token(TokenTypes.ASSIGN, '=');
             var result = token.ToString();

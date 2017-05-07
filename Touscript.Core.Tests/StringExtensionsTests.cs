@@ -12,7 +12,7 @@ namespace Touscript.Core.Tests
     public class StringExtensionsTests
     {
         [Test()]
-        public void StripWhiteSpaceTest()
+        public void GivenStringFullOfWhiteSpace_WhenUsingStripWhiteSpace_ThenReturnOnlyABCD()
         {
             var testingString = " a \t b \r c \n d";
             var result = testingString.StripWhiteSpace();
@@ -20,7 +20,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithTabWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithTab_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a\t";
             var result = testingString.StripWhiteSpace();
@@ -28,7 +28,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithSpaceWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithSpace_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a ";
             var result = testingString.StripWhiteSpace();
@@ -36,7 +36,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithCaretReturnWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithCaretReturn_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a\r";
             var result = testingString.StripWhiteSpace();
@@ -44,7 +44,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithNewLineWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithNewLine_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a\n";
             var result = testingString.StripWhiteSpace();
@@ -52,7 +52,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithNewLineAndCaretReturnWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithNewLineAndCaretReturn_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a\n\r";
             var result = testingString.StripWhiteSpace();
@@ -60,7 +60,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithSpaceBetweenWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithSpaceBetween_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a b";
             var result = testingString.StripWhiteSpace();
@@ -68,7 +68,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenStringWithMultipleSpacesBetweenWhenStrippingWhitespaceRemovesIt()
+        public void GivenStringWithMultipleSpacesBetween_WhenStrippingWhitespace_ThenRemovesIt()
         {
             var testingString = "a        b";
             var result = testingString.StripWhiteSpace();
@@ -76,7 +76,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenAWhenCheckingIfItIsInABCThenReturnTrue()
+        public void GivenA_WhenCheckingIfItIsInABC_ThenReturnTrue()
         {
             var value = "A";
             var array = new string[] { "A", "B", "C" };
@@ -85,7 +85,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenAWhenCheckingIfItIsInBCThenReturnFalse()
+        public void GivenA_WhenCheckingIfItIsInBC_ThenReturnFalse()
         {
             var value = "A";
             var array = new string[] { "B", "C" };
@@ -94,7 +94,7 @@ namespace Touscript.Core.Tests
         }
 
         [Test()]
-        public void GivenAWhenCheckingIfItIsInBACAThenReturnTrue()
+        public void GivenA_WhenCheckingIfItIsInBACA_ThenReturnTrue()
         {
             var value = "A";
             var array = new string[] { "B", "A", "C", "A" };
