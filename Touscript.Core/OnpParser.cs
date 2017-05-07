@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Touscript.Interpreter;
 
 namespace Touscript.Core
 {

@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
-using Touscript.Interpreter;
-//using Touscript.Interpreter.Operators;
 using Touscript.Core;
 
 namespace TouScript.Core.Tests

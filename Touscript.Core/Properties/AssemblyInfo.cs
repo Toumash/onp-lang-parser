@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("touscript")]
+[assembly: AssemblyTitle("touscript.Interpreter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("touscript")]
+[assembly: AssemblyProduct("touscript.Interpreter")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e4c461c6-3bad-4477-a0c4-634f498c663c")]
+[assembly: Guid("ccb399c4-2b91-4f94-a82b-0b9da409662f")]
 
 // Version information for an assembly consists of the following four values:
 //

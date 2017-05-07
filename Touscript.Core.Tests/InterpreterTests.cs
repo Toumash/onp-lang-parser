@@ -1,13 +1,11 @@
 ﻿using NUnit.Framework;
-using Touscript.Interpreter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Touscript.Interpreter.Tokens;
 
-namespace Touscript.Interpreter.Tests
+namespace Touscript.Core.Tests
 {
     [TestFixture()]
     public class InterpreterTests

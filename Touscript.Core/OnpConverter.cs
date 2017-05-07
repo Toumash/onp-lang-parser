@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Touscript.Interpreter;
 
 namespace Touscript.Core
 {

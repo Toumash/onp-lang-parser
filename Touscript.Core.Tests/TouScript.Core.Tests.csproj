@@ -51,21 +51,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="InterpreterTests.cs" />
     <Compile Include="OnpConverterTests.cs" />
     <Compile Include="OnpParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensionsTests.cs" />
+    <Compile Include="Tokens\VariableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\touscript.Interpreter\TouScript.Interpreter.csproj">
-      <Project>{CCB399C4-2B91-4F94-A82B-0B9DA409662F}</Project>
-      <Name>TouScript.Interpreter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Touscript.Core\Touscript.Core.csproj">
+      <Project>{CCB399C4-2B91-4F94-A82B-0B9DA409662F}</Project>
+      <Name>Touscript.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Touscript.Runtime\Touscript.Runtime.csproj">
       <Project>{E4C461C6-3BAD-4477-A0C4-634F498C663C}</Project>
-      <Name>TouScript.Core</Name>
+      <Name>Touscript.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

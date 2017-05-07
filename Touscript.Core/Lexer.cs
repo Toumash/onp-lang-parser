@@ -1,31 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
-using Touscript.Interpreter;
-using static Touscript.Interpreter.TokenTypes;
+using static Touscript.Core.TokenTypes;
 
-namespace Touscript.Interpreter
+namespace Touscript.Core
 {
-    public class Interpreter
+    public class Lexer
     {
         public string Input { get; private set; }
         public Token CurrentToken { get; private set; }
         public char CurrentChar { get; private set; }
         public int Position { get; private set; }
 
-        public Interpreter(string input)
+        public Lexer(string input)
         {
             Input = input.StripWhiteSpace();
             CurrentToken = null;
             Position = 0;
             CurrentChar = Input[Position];
-        }
-
-        public void Error()
-        {
-            throw new Exception("Error parsing input");
         }
 
         public void Advance()
@@ -39,11 +32,6 @@ namespace Touscript.Interpreter
             {
                 CurrentChar = Input[Position];
             }
-        }
-
-        public void Factor()
-        {
-            Eat(NUMBER);
         }
 
         public void SkipWhitespace()
@@ -105,46 +93,6 @@ namespace Touscript.Interpreter
                 }
             }
             return new Token(EOF, null);
-        }
-
-
-        /// <summary>
-        ///  expr -> INTEGER PLUS INTEGER
-        /// </summary>
-        /// <returns></returns>
-        public void Expr()
-        {
-            Factor();
-
-            while (CurrentToken.Type.In(MUL, DIV))
-            {
-                var token = CurrentToken;
-                if (token.Type == MUL)
-                {
-                    Eat(MUL);
-                    Factor();
-                }
-                else if (token.Type == DIV)
-                {
-                    Eat(DIV);
-                    Factor();
-                }
-            }
-        }
-
-        public void Eat(string token_type)
-        {
-            if (CurrentToken.Type == token_type)
-                CurrentToken = GetNextToken();
-            else
-                Error();
-        }
-
-        public int Term()
-        {
-            var token = CurrentToken;
-            Eat(NUMBER);
-            return (int)token.Value;
         }
     }
 }

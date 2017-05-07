@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Touscript.Tests
+namespace Touscript.Core.Tests
 {
     [TestFixture()]
     public class StringExtensionsTests

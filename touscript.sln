@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Core", "Touscript.Core\Touscript.Core.csproj", "{E4C461C6-3BAD-4477-A0C4-634F498C663C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Runtime", "Touscript.Runtime\Touscript.Runtime.csproj", "{E4C461C6-3BAD-4477-A0C4-634F498C663C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Interpreter", "Touscript.Interpreter\Touscript.Interpreter.csproj", "{CCB399C4-2B91-4F94-A82B-0B9DA409662F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Core", "Touscript.Core\Touscript.Core.csproj", "{CCB399C4-2B91-4F94-A82B-0B9DA409662F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Core.Tests", "Touscript.Core.Tests\Touscript.Core.Tests.csproj", "{C4C4CF3A-4B50-4FA0-921C-BADC279E69CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touscript.Interpreter.Tests", "Touscript.Interpreter.Tests\Touscript.Interpreter.Tests.csproj", "{10D56E0E-CD9D-4FA6-8D76-879A4056CE18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{C4C4CF3A-4B50-4FA0-921C-BADC279E69CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4C4CF3A-4B50-4FA0-921C-BADC279E69CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4C4CF3A-4B50-4FA0-921C-BADC279E69CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10D56E0E-CD9D-4FA6-8D76-879A4056CE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10D56E0E-CD9D-4FA6-8D76-879A4056CE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10D56E0E-CD9D-4FA6-8D76-879A4056CE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10D56E0E-CD9D-4FA6-8D76-879A4056CE18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

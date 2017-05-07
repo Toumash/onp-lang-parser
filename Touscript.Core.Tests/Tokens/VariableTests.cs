@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Touscript.Interpreter.Tests
+namespace Touscript.Core.Tests
 {
     [TestFixture()]
     public class VariableTests

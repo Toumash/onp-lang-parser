@@ -14,7 +14,8 @@ namespace Touscript.Core
                 text = text.StripWhiteSpace();
                 if (string.IsNullOrEmpty(text))
                     continue;
-                var interpreter = new Interpreter.Interpreter(text);
+                var lexer = new Lexer(text);
+                var interpreter = new Interpreter(lexer);
                 var result = interpreter.Expr();
                 Console.WriteLine(result);
             }

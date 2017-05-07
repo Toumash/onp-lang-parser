@@ -1,4 +1,4 @@
-﻿namespace Touscript.Interpreter
+﻿namespace Touscript.Core
 {
     public class Token
     {
