@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return $"Token({Type},{Value}";
+            return $"Token({Type},{Value})";
         }
     }
 }

@@ -45,9 +45,9 @@ namespace Touscript.Core
                 Eat(NUMBER);
                 return (int)token.Value;
             }
-            else if (token.Type == VARIABLE)
+            else if (token.Type == VAR)
             {
-                Eat(VARIABLE);
+                Eat(VAR);
                 return (int)Value(token.Value.ToString());
             }
             else if (token.Type == LPAREN)
@@ -79,10 +79,10 @@ namespace Touscript.Core
         /// </summary>
         public int Main()
         {
-            if (CurrentToken.Type == VARIABLE)
+            if (CurrentToken.Type == VAR)
             {
                 var token = CurrentToken;
-                Eat(VARIABLE);
+                Eat(VAR);
                 var newValue = AssignmentOperator();
                 Variables[(string)token.Value] = newValue;
                 return newValue;
@@ -92,9 +92,9 @@ namespace Touscript.Core
 
         public int AssignmentOperator()
         {
-            if (CurrentToken.Type == ASSIGNMENT)
+            if (CurrentToken.Type == ASSIGN)
             {
-                Eat(ASSIGNMENT);
+                Eat(ASSIGN);
                 return Expr();
             }
             return Error();

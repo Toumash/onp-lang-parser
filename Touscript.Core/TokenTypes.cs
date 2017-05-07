@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Touscript.Core
 {
 
-    static class TokenTypes
+    public static class TokenTypes
     {
         public const string EOF = "EOF";
         public const string LOOP = "LOOP";
         public const string IF = "IF";
         public const string ELSEIF = "ELSE";
         public const string NUMBER = "NUM";
-        public const string VARIABLE = "VAR";
-        public const string ASSIGNMENT = "ASSIGN";
+        public const string VAR = "VAR";
+        public const string ASSIGN = "ASSIGN";
         public const string PLUS = "PLUS";
         public const string MINUS = "MINUS";
         public const string MUL = "MUL";

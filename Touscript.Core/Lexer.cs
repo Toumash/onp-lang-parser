@@ -127,12 +127,12 @@ namespace Touscript.Core
                 }
                 if (char.IsLetter(CurrentChar))
                 {
-                    return new Token(VARIABLE, Variable());
+                    return new Token(VAR, Variable());
                 }
                 if (CurrentChar == '=')
                 {
                     Advance();
-                    return new Token(ASSIGNMENT, '=');
+                    return new Token(ASSIGN, '=');
                 }
                 return new Token(EOF, null);
             }
