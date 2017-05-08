@@ -1,4 +1,5 @@
 ﻿using System;
+using Touscript.Core.Exceptions;
 
 namespace Touscript.Core
 {

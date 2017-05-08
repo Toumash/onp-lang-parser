@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AST.cs" />
+    <Compile Include="Node\BinaryOperation.cs" />
+    <Compile Include="Node\Number.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="OnpConverter.cs" />
     <Compile Include="OnpParser.cs" />
@@ -50,8 +53,8 @@
     <Compile Include="Interpreter.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnexpectedEndOfFileException.cs" />
-    <Compile Include="UnexpectedTokenException.cs" />
+    <Compile Include="Exceptions\UnexpectedEndOfFileException.cs" />
+    <Compile Include="Exceptions\UnexpectedTokenException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

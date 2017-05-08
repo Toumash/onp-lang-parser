@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Touscript.Core.Exceptions;
 using static Touscript.Core.TokenTypes;
 
 namespace Touscript.Core

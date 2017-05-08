@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Touscript.Core
+namespace Touscript.Core.Exceptions
 {
     [Serializable]
     public class UnexpectedTokenException : Exception

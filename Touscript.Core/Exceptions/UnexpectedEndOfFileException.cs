@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Touscript.Core
+namespace Touscript.Core.Exceptions
 {
     [Serializable]
     public class UnexpectedEndOfFileException : Exception
